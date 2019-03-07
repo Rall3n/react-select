@@ -927,6 +927,7 @@ export default class Select extends Component<Props, State> {
     this.clearValue();
     event.stopPropagation();
     this.openAfterFocus = false;
+    this.inputIsHiddenAfterUpdate = false;
     setTimeout(() => this.focusInput());
   };
   onScroll = (event: Event) => {
