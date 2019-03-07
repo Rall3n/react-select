@@ -8,5 +8,7 @@ export const getOptionLabel = (option: OptionType): string => option.label;
 
 export const getOptionValue = (option: OptionType): string => option.value;
 
+export const getGroupOptions = (option: GroupType | OptionType): ?Array<OptionType> => option.options;
+
 export const isOptionDisabled = (option: OptionType): boolean =>
   !!option.isDisabled;

@@ -15,6 +15,7 @@ const {
   ClearIndicator,
   Control,
   DropdownIndicator,
+  Group,
   GroupHeading,
   IndicatorsContainer,
   Input,
@@ -2013,6 +2014,19 @@ test('getOptionLabel() prop > to format the option label', () => {
       .at(0)
       .text()
   ).toBe('This a custom option 0 label');
+});
+
+test('getGroupOptions() prop > to get options from custom attribute', () => {
+  const options = [
+    {
+      label: 'group 1',
+      values: [{ value: 1, label: '1' }, { value: 2, label: '2' }],
+    },
+  ];
+  const selectWrapper = mount(
+    <Select options={options} menuIsOpen getGroupOptions={(option) => option.values} />
+  );
+  expect(selectWrapper.find(Group).exists()).toBeTruthy();
 });
 
 test('formatGroupLabel function prop > to format Group label', () => {

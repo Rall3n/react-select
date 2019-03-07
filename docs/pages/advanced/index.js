@@ -12,6 +12,7 @@ import {
   CustomFilterOptions,
   CustomGetOptionLabel,
   CustomGetOptionValue,
+  CustomGetGroupOptions,
   CustomIsOptionDisabled,
   Experimental,
   Popout,
@@ -95,6 +96,16 @@ export default function Advanced() {
           raw={require('!!raw-loader!../../examples/CustomGetOptionValue.js')}
         >
           <CustomGetOptionValue />
+        </ExampleWrapper>
+      )}
+      
+      ${(
+        <ExampleWrapper
+          label="custom getGroupOptions function example"
+          urlPath="docs/examples/CustomGetGroupOptions.js"
+          raw={require('!!raw-loader!../../examples/CustomGetGroupOptions.js')}
+        >
+          <CustomGetGroupOptions />
         </ExampleWrapper>
       )}
 

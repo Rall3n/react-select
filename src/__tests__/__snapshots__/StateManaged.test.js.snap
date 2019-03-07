@@ -12,6 +12,7 @@ exports[`defaults > snapshot 1`] = `
   escapeClearsValue={false}
   filterOption={[Function]}
   formatGroupLabel={[Function]}
+  getGroupOptions={[Function]}
   getOptionLabel={[Function]}
   getOptionValue={[Function]}
   inputValue=""

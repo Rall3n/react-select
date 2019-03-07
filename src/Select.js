@@ -37,6 +37,7 @@ import {
   formatGroupLabel,
   getOptionLabel,
   getOptionValue,
+  getGroupOptions,
   isOptionDisabled,
 } from './builtins';
 
@@ -143,6 +144,8 @@ export type Props = {
   getOptionLabel: typeof getOptionLabel,
   /* Resolves option data to a string to compare options and specify value attributes */
   getOptionValue: typeof getOptionValue,
+  /* Resolves option data to an array to specify the content of option groups */
+  getGroupOptions: typeof getGroupOptions,
   /* Hide the selected option from the menu */
   hideSelectedOptions?: boolean,
   /* The id to set on the SelectContainer component. */
@@ -259,6 +262,7 @@ export const defaultProps = {
   formatGroupLabel: formatGroupLabel,
   getOptionLabel: getOptionLabel,
   getOptionValue: getOptionValue,
+  getGroupOptions: getGroupOptions,
   isDisabled: false,
   isLoading: false,
   isMulti: false,
@@ -760,6 +764,9 @@ export default class Select extends Component<Props, State> {
   getOptionValue = (data: OptionType): string => {
     return this.props.getOptionValue(data);
   };
+  getGroupOptions = (data: OptionType | GroupType) : ?Array<OptionType> => {
+    return this.props.getGroupOptions(data);
+  }
   getStyles = (key: string, props: {}): {} => {
     const base = defaultStyles[key](props);
     base.boxSizing = 'border-box';
@@ -1286,12 +1293,12 @@ export default class Select extends Component<Props, State> {
 
     return options.reduce(
       (acc, item, itemIndex) => {
-        if (item.options) {
+        const item_options = this.getGroupOptions(item);
+        if (item_options) {
           // TODO needs a tidier implementation
           if (!this.hasGroups) this.hasGroups = true;
 
-          const { options: items } = item;
-          const children = items
+          const children = item_options
             .map((child, i) => {
               const option = toOption(child, `${itemIndex}-${i}`);
               if (option && !option.isDisabled) acc.focusable.push(child);

@@ -52,6 +52,7 @@ exports[`defaults - snapshot 1`] = `
         filterOption={null}
         formatCreateLabel={[Function]}
         formatGroupLabel={[Function]}
+        getGroupOptions={[Function]}
         getNewOptionData={[Function]}
         getOptionLabel={[Function]}
         getOptionValue={[Function]}
@@ -122,6 +123,7 @@ exports[`defaults - snapshot 1`] = `
               "filterOption": null,
               "formatCreateLabel": [Function],
               "formatGroupLabel": [Function],
+              "getGroupOptions": [Function],
               "getNewOptionData": [Function],
               "getOptionLabel": [Function],
               "getOptionValue": [Function],
@@ -230,6 +232,7 @@ exports[`defaults - snapshot 1`] = `
                   "filterOption": null,
                   "formatCreateLabel": [Function],
                   "formatGroupLabel": [Function],
+                  "getGroupOptions": [Function],
                   "getNewOptionData": [Function],
                   "getOptionLabel": [Function],
                   "getOptionValue": [Function],
@@ -330,6 +333,7 @@ exports[`defaults - snapshot 1`] = `
                       "filterOption": null,
                       "formatCreateLabel": [Function],
                       "formatGroupLabel": [Function],
+                      "getGroupOptions": [Function],
                       "getNewOptionData": [Function],
                       "getOptionLabel": [Function],
                       "getOptionValue": [Function],
@@ -430,6 +434,7 @@ exports[`defaults - snapshot 1`] = `
                           "filterOption": null,
                           "formatCreateLabel": [Function],
                           "formatGroupLabel": [Function],
+                          "getGroupOptions": [Function],
                           "getNewOptionData": [Function],
                           "getOptionLabel": [Function],
                           "getOptionValue": [Function],
@@ -534,6 +539,7 @@ exports[`defaults - snapshot 1`] = `
                           "filterOption": null,
                           "formatCreateLabel": [Function],
                           "formatGroupLabel": [Function],
+                          "getGroupOptions": [Function],
                           "getNewOptionData": [Function],
                           "getOptionLabel": [Function],
                           "getOptionValue": [Function],
@@ -720,6 +726,7 @@ exports[`defaults - snapshot 1`] = `
                       "filterOption": null,
                       "formatCreateLabel": [Function],
                       "formatGroupLabel": [Function],
+                      "getGroupOptions": [Function],
                       "getNewOptionData": [Function],
                       "getOptionLabel": [Function],
                       "getOptionValue": [Function],
@@ -819,6 +826,7 @@ exports[`defaults - snapshot 1`] = `
                           "filterOption": null,
                           "formatCreateLabel": [Function],
                           "formatGroupLabel": [Function],
+                          "getGroupOptions": [Function],
                           "getNewOptionData": [Function],
                           "getOptionLabel": [Function],
                           "getOptionValue": [Function],
@@ -926,6 +934,7 @@ exports[`defaults - snapshot 1`] = `
                           "filterOption": null,
                           "formatCreateLabel": [Function],
                           "formatGroupLabel": [Function],
+                          "getGroupOptions": [Function],
                           "getNewOptionData": [Function],
                           "getOptionLabel": [Function],
                           "getOptionValue": [Function],
