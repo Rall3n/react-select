@@ -764,7 +764,7 @@ export default class Select extends Component<Props, State> {
   getOptionValue = (data: OptionType): string => {
     return this.props.getOptionValue(data);
   };
-  getGroupOptions = (data: OptionType | GroupType) : ?Array<OptionType> => {
+  getGroupOptions = (data: OptionType | GroupType) : ?OptionsType => {
     return this.props.getGroupOptions(data);
   }
   getStyles = (key: string, props: {}): {} => {
