@@ -237,6 +237,10 @@ export type Props = {
   value: ValueType,
   /* Sets the form attribute on the input */
   form?: string,
+  /* Text to display if the component fails the `required` validation  */
+  requiredMessage?: (SyntheticEvent<HTMLElement>) => string,
+  /* Marks the value-holding input as required for form validation */
+  required?: boolean,
 };
 
 export const defaultProps = {
@@ -277,6 +281,7 @@ export const defaultProps = {
   styles: {},
   tabIndex: '0',
   tabSelectsValue: true,
+  requiredMessage: () => 'Please select an item from the list.',
 };
 
 type State = {
@@ -515,6 +520,8 @@ export default class Select extends Component<Props, State> {
   getInputRef = (ref: ?HTMLElement) => {
     this.inputRef = ref;
   };
+
+  valueInputRef = React.createRef<HTMLElement>();
 
   // Lifecycle
   // ------------------------------
@@ -782,6 +789,8 @@ export default class Select extends Component<Props, State> {
   onChange = (newValue: ValueType, actionMeta: ActionMeta) => {
     const { onChange, name } = this.props;
     onChange(newValue, { ...actionMeta, name });
+    // Reset input validity if value changes.
+    this.valueInputRef.current?.setCustomValidity('');
   };
   setValue = (
     newValue: ValueType,
@@ -1308,6 +1317,21 @@ export default class Select extends Component<Props, State> {
   shouldHideSelectedOptions = () => {
     return shouldHideSelectedOptions(this.props);
   };
+
+  onInvalid = (e: SyntheticEvent<HTMLInputElement>) => {
+    const { required, requiredMessage } = this.props;
+
+    e.target.setCustomValidity((required && !this.hasValue()) ? requiredMessage(e) : '');
+  }
+
+  // If the hidden input gets focus through form submit,
+  // redirect focus to focusable input.
+  onValueInputFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.focus();
+  }
 
   // ==============================
   // Keyboard Handlers
@@ -1888,17 +1912,28 @@ export default class Select extends Component<Props, State> {
     );
   }
   renderFormField() {
-    const { delimiter, isDisabled, isMulti, name } = this.props;
+    const { delimiter, isDisabled, isMulti, name, required } = this.props;
     const { selectValue } = this.state;
 
+    const hiddenInputStyle = { opacity: 0, pointerEvents: 'none', position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%' };
+
     if (!name || isDisabled) return;
+
+    const commonInputProps = {
+      tabIndex: -1,
+      ref: this.valueInputRef,
+      onFocus: this.onValueInputFocus,
+      onInvalid: this.onInvalid,
+      required: required,
+      style: hiddenInputStyle
+    };
 
     if (isMulti) {
       if (delimiter) {
         const value = selectValue
           .map(opt => this.getOptionValue(opt))
           .join(delimiter);
-        return <input name={name} type="hidden" value={value} />;
+        return <input {...commonInputProps} name={name} type="text" value={value} />;
       } else {
         const input =
           selectValue.length > 0 ? (
@@ -1911,14 +1946,14 @@ export default class Select extends Component<Props, State> {
               />
             ))
           ) : (
-            <input name={name} type="hidden" />
+            <input {...commonInputProps} name={name} type="text" />
           );
 
         return <div>{input}</div>;
       }
     } else {
       const value = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
-      return <input name={name} type="hidden" value={value} />;
+      return <input {...commonInputProps} name={name} type="text" value={value} />;
     }
   }
 
